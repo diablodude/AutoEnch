@@ -1,6 +1,7 @@
 # AutoEnch
 
 This is a little script that can ench other bots on start of a game, similar to Scripts.BattleOrders.
+Could be helpful starting new chars, make sure every character has Act1 Cata Waypoint.
 
 # INSTALLATION
 
