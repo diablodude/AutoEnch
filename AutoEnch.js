@@ -45,11 +45,12 @@ function AutoEnch() {
 	var i,
 		tick = getTickCount(),
 		failTimer = 60;
+		var merc = me.getMerc();
 
 MainLoop:
 	while (true) {
 		switch (Config.AutoEnch.Mode) {
-		case 0: // Give BO
+		case 0: // Give Ench
 			for (i = 0; i < Config.AutoEnch.Getters.length; i += 1) {
 				while (!Misc.inMyParty(Config.AutoEnch.Getters[i]) || !getUnit(0, Config.AutoEnch.Getters[i])) {
 					if (getTickCount() - tick >= failTimer * 1000) {
@@ -67,13 +68,18 @@ MainLoop:
 			}
 
 			break;
-		case 1: // Get BO
-			if (me.getState(16)) {
+		case 1: // Get Ench
+			if (merc)  {
+			    if (me.getState(16) && merc.getState(16)) {
 				delay(1000);
-
-				break MainLoop;
+ 				break MainLoop;
+			    }
+			} else {
+			    if (me.getState(16)) {
+				delay(1000);
+ 				break MainLoop;
+			    }
 			}
-
 			if (getTickCount() - tick >= failTimer * 1000) {
 				showConsole();
 				print("ÿc1AutoEnch timeout fail.");
